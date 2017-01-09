@@ -181,6 +181,7 @@ http {
 
     {{ range $server := .servers }}
     server {
+        underscores_in_headers on;
         server_name {{ $server.Name }};
         listen 80{{ if $cfg.useProxyProtocol }} proxy_protocol{{ end }};
         {{ if $server.SSL }}listen 443 {{ if $cfg.useProxyProtocol }}proxy_protocol{{ end }} ssl {{ if $cfg.enableSpdy }}spdy{{ end }} {{ if $cfg.useHttp2 }}http2{{ end }};
